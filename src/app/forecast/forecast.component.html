@@ -10,7 +10,7 @@
     <h3 style="color: rgb(68, 122, 112);" *ngIf="cityName">{{cityName}}'s Five Days Forecast</h3>
   </div>
   <div class=" row p-2">
-    <div class="col card text-center day-div" *ngFor="let forecast of foreCastArray">
+    <div class="col-*-* card text-center day-div" *ngFor="let forecast of foreCastArray">
       <div>{{forecast.day | date: 'longDate'}}</div>
       <div>{{forecast.time}}</div>
       <div><img src="http://openweathermap.org/img/w/{{forecast.icon}}.png" height="80px" width="80px"></div>
