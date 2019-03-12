@@ -48,7 +48,8 @@ export class WeatherComponent implements OnInit {
         return Array.from(map.values()).reverse();
     }
 
-    onSubmitCity(): void {
+    onSubmitCity(city: string): void {
+        this.city = city;
         if (!this.city) {
             alert('Enter City');
             return;

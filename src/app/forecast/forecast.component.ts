@@ -8,6 +8,7 @@ import { Forecast } from '../forecast';
 })
 export class ForecastComponent implements OnInit {
     cityName: string;
+    city: string;
     foreCastArray: Forecast[] = [];
     constructor(private weatherService: WeatherService) {}
 
