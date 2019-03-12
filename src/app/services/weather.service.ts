@@ -10,14 +10,14 @@ export class WeatherService {
     constructor(private http: HttpClient) {}
     getWeatherDetails(city: string): Observable<object> {
         return this.http.get<[]>(
-            `http://api.openweathermap.org/data/2.5/weather?q=${city}
+            `https://api.openweathermap.org/data/2.5/weather?q=${city}
             &appid=2a2295395cee570b93c09a14d74ec0cd&units=metric`
         );
     }
 
     getWeatherByLocation(lat: string, lon: string): Observable<object> {
         return this.http.get(
-            `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=2a2295395cee570b93c09a14d74ec0cd&units=metric`
+            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=2a2295395cee570b93c09a14d74ec0cd&units=metric`
         );
     }
 
