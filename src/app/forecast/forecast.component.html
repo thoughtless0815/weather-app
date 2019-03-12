@@ -1,0 +1,23 @@
+<div class="text-center m-3 p-3">
+  <label class="bg-secondary p-1" style="color: white;">
+    <input type="text" class="form-control" placeholder="enter city" [(ngModel)]="city">
+  </label>&nbsp;
+  <span> <button class="btn btn-dark p-2" (click)="onSubmitCity(city)">&nbsp;Submit &nbsp; </button></span>
+</div>
+
+<div>
+  <div class="text-center">
+    <h3 style="color: rgb(68, 122, 112);" *ngIf="cityName">{{cityName}}'s Five Days Forecast</h3>
+  </div>
+  <div class=" row p-2">
+    <div class="col card text-center day-div" *ngFor="let forecast of foreCastArray">
+      <div>{{forecast.day | date: 'longDate'}}</div>
+      <div>{{forecast.time}}</div>
+      <div><img src="http://openweathermap.org/img/w/{{forecast.icon}}.png" height="80px" width="80px"></div>
+      <div>{{forecast.weatherDesc}}</div>
+      <div>Temperature min: {{forecast.tempMin}}&deg;C </div>
+      <div>Temperature max: {{forecast.tempMax}}&deg;C </div>
+      <div>Wind speed: {{forecast.windSpeed}} </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+.root-div {
+  text-align: justify;
+  color: white;
+  height: 60px;
+  width: 100%;
+
+}
+
+.links {
+  height: 100%;
+  display: flex;
+}
+
+.link {
+  height: 100%;
+  text-align: center;
+  text-decoration: none;
+  color: aliceblue;
+  cursor: pointer;
+}
+
+.link:hover {
+  background-color: lightblue;
+  color: black;
+}

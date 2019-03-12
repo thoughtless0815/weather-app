@@ -1,0 +1,14 @@
+<div class="row text-center ml-2" @myInsertRemoveTrigger>
+  <div class="col-3"></div>
+  <div class="col-6 weather border border-dark rounded text-center">
+    <span style="float: right; cursor: pointer;" (click)="removeCityDetails()">
+      <i class="fa fa-remove"></i>
+    </span>
+    <h4>{{weather.name}} </h4>
+    <div class="text-center"><img src="http://openweathermap.org/img/w/{{weather.weather[0].icon}}.png"></div>
+    <div>{{weather.weather[0].main}}</div>
+    <label>Temperature: <span>{{weather.main.temp}}&#176;</span></label> <br>
+    <label>Wind Speed: <span>{{weather.wind.speed}}&nbsp;mi/h</span></label>
+  </div>
+  <div class="col-3"></div>
+</div>

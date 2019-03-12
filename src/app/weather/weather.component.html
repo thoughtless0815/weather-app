@@ -1,0 +1,19 @@
+<div class="text-center m-3 p-3">
+  <label class="bg-secondary p-1" style="color: white;">
+    <input type="text" class="form-control" placeholder="enter city" [(ngModel)]="city">
+  </label>&nbsp;
+  <span> <button class="btn btn-dark p-2" (click)="onSubmitCity(city)">&nbsp;Submit &nbsp; </button></span>
+  <span> <button class="btn btn-info p-2 ml-2" (click)="onRefresh($event.target)">&nbsp;Refresh Off&nbsp;
+    </button></span>
+  <span> <button class="btn btn-danger p-2" style="float: right" (click)="clearStorage()">&nbsp;Clear &nbsp; </button></span>
+</div>
+<div>
+  <div *ngIf="cityErrorMessage">
+    <div class="m-2 alert alert-danger text-center">{{cityErrorMessage}}</div>
+  </div>
+</div>
+<div>
+  <ng-container *ngFor="let weather of getValues(weatherMap)">
+    <app-city-weather [refresh]="refresh" [weather]="weather" (remove)="removeCityDetails(weather)"></app-city-weather>
+  </ng-container>
+</div>
