@@ -16,12 +16,7 @@ export class WeatherService {
         let fiveDaysData = this.http.get(
             `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=2a2295395cee570b93c09a14d74ec0cd&units=metric`
         );
-
         return forkJoin([ currentData, fiveDaysData ]);
-        // return this.http.get<[]>(
-        //     `https://api.openweathermap.org/data/2.5/weather?q=${city}
-        //     &appid=2a2295395cee570b93c09a14d74ec0cd&units=metric`
-        // );
     }
 
     getWeatherByLocation(lat: string, lon: string): Observable<object> {
