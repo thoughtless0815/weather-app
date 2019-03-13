@@ -9,15 +9,22 @@ import { Forecast } from '../forecast';
 export class ForecastComponent implements OnInit {
     cityName: string;
     city: string;
-    foreCastArray: Forecast[] = [];
+    forecastMap = new Map<string, object>();
+    private foreCastArray = [];
     constructor(private weatherService: WeatherService) {}
 
     ngOnInit() {}
+
+    getForecastValues(map: any) {
+        console.log(Array.from(map.values()).reverse());
+        return Array.from(map.values()).reverse();
+    }
 
     onSubmitCity(city: string) {
         this.cityName = city;
         this.weatherService.getFiveDaysForcast(city).subscribe(
             (data: any) => {
+                this.foreCastArray = [];
                 for (let i = 0; i < data.list.length; i += 8) {
                     this.foreCastArray.push(
                         new Forecast(
@@ -34,7 +41,7 @@ export class ForecastComponent implements OnInit {
             },
             (error) => console.log(error),
             () => {
-                console.log(this.foreCastArray);
+                this.forecastMap.set(this.city, { city: this.city, forecastArray: this.foreCastArray });
             }
         );
     }

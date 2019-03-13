@@ -23,3 +23,9 @@
   background-color: lightblue;
   color: black;
 }
+
+.r-div {
+  background-image: url('../assets/photos/w1.png');
+  background-size: cover;
+  opacity: 1;
+}

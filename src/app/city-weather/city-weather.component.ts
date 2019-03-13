@@ -23,7 +23,6 @@ export class CityWeatherComponent implements OnInit, OnChanges {
     constructor(private weatherService: WeatherService) {}
 
     ngOnChanges(changes: SimpleChanges): void {
-        console.log(changes.refresh.currentValue);
         if (changes.refresh.currentValue === false) {
             this.stopInterval();
         } else {
@@ -34,7 +33,6 @@ export class CityWeatherComponent implements OnInit, OnChanges {
     startInterval() {
         this.interval = setInterval(() => {
             this.weatherService.getWeatherDetails(this.weather.name).subscribe((data: any) => {
-                console.log(this.weather.name);
                 this.weather = data;
             });
         }, 2000);

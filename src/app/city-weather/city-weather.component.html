@@ -1,14 +1,65 @@
-<div class="row text-center ml-2" @myInsertRemoveTrigger>
-  <div class="col-3"></div>
-  <div class="col-6 weather border border-dark rounded text-center">
-    <span style="float: right; cursor: pointer;" (click)="removeCityDetails()">
-      <i class="fa fa-remove"></i>
-    </span>
-    <h4>{{weather.name}} </h4>
-    <div class="text-center"><img src="http://openweathermap.org/img/w/{{weather.weather[0].icon}}.png"></div>
-    <div>{{weather.weather[0].main}}</div>
-    <label>Temperature: <span>{{weather.main.temp}}&#176;</span></label> <br>
-    <label>Wind Speed: <span>{{weather.wind.speed}}&nbsp;mi/h</span></label>
+<div class="container-fluid mb-2 " @myInsertRemoveTrigger>
+  <div class="row text-center ">
+    <div class="col-sm-3 col-md-3"></div>
+    <div class="col-sm-6 col-md-6  border border-dark text-center p-3 transparent">
+      <div class="">
+        <span class="text-right" style="float: right;cursor: pointer;" (click)="removeCityDetails()">
+          <i class="fa fa-remove"></i>
+        </span>
+      </div>
+      <div>
+        <h4>{{weather.currentData.name}} </h4>
+      </div>
+
+      <div class="text-center"><img src="http://openweathermap.org/img/w/{{weather.currentData.weather[0].icon}}.png">
+        &nbsp;<span>{{weather.currentData.weather[0].main}}</span>
+      </div>
+      <div>
+        <span>&uArr; &nbsp; {{weather.currentData.main.temp_max}}&deg;<sup>c</sup></span> &nbsp;
+        <span>&dArr; &nbsp;{{weather.currentData.main.temp_min}}&deg;<sup>c</sup></span>
+      </div>
+      <h2 style="color: rgb(55, 45, 99)">{{weather.currentData.main.temp}}&deg;<sup>c</sup></h2>
+      <div>Wind Speed: <span>{{weather.currentData.wind.speed}}&nbsp;km/h</span></div>
+    </div>
+
+    <div class="col-sm-3 col-md-3 "></div>
   </div>
-  <div class="col-3"></div>
+  <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6 border border-dark text-center transparent">
+      <nav>
+        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+          <a class="nav-item nav-link active" id="nav-home-tab" style="color: black" data-toggle="tab" href="#five-{{weather.name}}"
+            role="tab" aria-controls="nav-home" aria-selected="true">5 days</a>
+          <a class="nav-item nav-link" id="nav-profile-tab" style="color: black" data-toggle="tab" href="#sixteen-{{weather.name}}"
+            role="tab" aria-controls="nav-profile" aria-selected="false">16 days</a>
+        </div>
+      </nav>
+      <div class="tab-content py-3 px-3 px-sm-0">
+        <div class="tab-pane fade show active" id="five-{{weather.name}}" role="tabpanel" aria-labelledby="nav-home-tab">
+          <app-five-days [fiveDaysData]="weather.fiveDaysData">
+          </app-five-days>
+
+        </div>
+        <div class="tab-pane fade" id="sixteen-{{weather.name}}" role="tabpanel" aria-labelledby="nav-profile-tab">
+          <div class="row">
+            <div class="col-12 bg-success my-1 well">
+              <div class="row bg-light">
+                <div class="col-3 ">day</div>
+                <div class="col-3 ">***</div>
+                <div class="col-3 ">
+                  temp
+                </div>
+                <div class="col-3">wind</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
+
+
 </div>

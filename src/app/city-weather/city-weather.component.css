@@ -1,5 +1,3 @@
-.weather {
-  margin: 5px;
-  background-color: rgb(68, 122, 112);
-  color: white;
+.transparent {
+  background: rgba(255, 255, 255, 0.247);
 }

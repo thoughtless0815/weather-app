@@ -2,6 +2,11 @@
   background-color: rgb(68, 122, 112);
   color: white;
   padding: 2%;
-  margin: 0px 3px 0px 3px;
+  margin: auto;
+  display: inline-block;
 
+}
+
+.root-div {
+  text-align: center;
 }

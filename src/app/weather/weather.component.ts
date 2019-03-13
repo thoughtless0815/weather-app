@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
 import { WeatherService } from '../services/weather.service';
 import { StorageService } from '../services/storage.service';
+import { Forecast } from '../forecast';
 
 @Component({
     selector: 'app-weather',
@@ -26,15 +27,12 @@ export class WeatherComponent implements OnInit {
     }
 
     private reloadCities(cities: any) {
-        console.log('reload');
-        this.getCitiesData();
-    }
-
-    private getCitiesData() {
         this.cityList.forEach((city) => {
-            this.weatherService.getWeatherDetails(city).subscribe((data: any) => {
-                console.log(city);
-                this.weatherMap.set(data.name, data);
+            this.weatherService.getWeatherDetails(city).subscribe((dataList: any) => {
+                this.weatherMap.set(dataList[0].name, {
+                    currentData: dataList[0],
+                    fiveDaysData: this.prepareFiveDaysData(dataList[1])
+                });
             });
         });
     }
@@ -54,24 +52,56 @@ export class WeatherComponent implements OnInit {
             alert('Enter City');
             return;
         }
-        this.weatherService.getWeatherDetails(this.city).subscribe((data: any) => {
-            this.setRetrievedData(data);
-        }, () => (this.cityErrorMessage = 'City not found'));
+        this.weatherService.getWeatherDetails(this.city).subscribe(
+            (dataList: any) => {
+                this.setDataInMap(dataList);
+                //  console.log(dataList);
+            },
+            () => {
+                this.cityErrorMessage = 'City not found';
+            },
+            () => {
+                console.log(this.weatherMap);
+            }
+        );
     }
 
-    private setRetrievedData(data: any) {
+    private setDataInMap(dataList: any) {
+        //console.log(dataList);
+
         this.cityErrorMessage = '';
         this.cityList = new Set(this.cityList);
         this.cityList.add(this.city.toLowerCase());
-        this.weatherMap.set(data.name, data);
+
+        //console.log(this.prepareFiveDaysData(dataList[1]));
+
+        this.weatherMap.set(dataList[0].name, {
+            currentData: dataList[0],
+            fiveDaysData: this.prepareFiveDaysData(dataList[1])
+        });
+    }
+    prepareFiveDaysData(data: any): any {
+        let foreCastArray = [];
+        for (let i = 0; i < data.list.length; i += 8) {
+            foreCastArray.push(
+                new Forecast(
+                    data.list[i].dt_txt.split(' ')[0],
+                    data.list[i].dt_txt.split(' ')[1],
+                    data.list[i].weather[0].icon,
+                    data.list[i].weather[0].description,
+                    data.list[i].main.temp_min,
+                    data.list[i].main.temp_max,
+                    data.list[i].wind.speed
+                )
+            );
+        }
+        return foreCastArray;
     }
 
     onRefresh(element) {
         if (this.refresh) {
-            console.log('1 = ' + this.refresh);
             element.textContent = 'Refresh Off';
             this.refresh = !this.refresh;
-            console.log('2 = ' + this.refresh);
         } else {
             element.textContent = 'Refresh On';
             this.refresh = !this.refresh;
@@ -79,10 +109,9 @@ export class WeatherComponent implements OnInit {
     }
 
     removeCityDetails(weather: any) {
-        console.log(weather);
-        this.weatherMap.delete(weather.name);
+        this.weatherMap.delete(weather.currentData.name);
         this.cityList = new Set(this.cityList);
-        this.cityList.delete(weather.name.toLowerCase());
+        this.cityList.delete(weather.currentData.name.toLowerCase());
     }
 
     clearStorage() {

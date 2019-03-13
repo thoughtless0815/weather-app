@@ -6,18 +6,26 @@
 </div>
 
 <div>
-  <div class="text-center">
-    <h3 style="color: rgb(68, 122, 112);" *ngIf="cityName">{{cityName}}'s Five Days Forecast</h3>
-  </div>
-  <div class=" row p-2">
-    <div class="col-*-* card text-center day-div" *ngFor="let forecast of foreCastArray">
-      <div>{{forecast.day | date: 'longDate'}}</div>
-      <div>{{forecast.time}}</div>
-      <div><img src="http://openweathermap.org/img/w/{{forecast.icon}}.png" height="80px" width="80px"></div>
-      <div>{{forecast.weatherDesc}}</div>
-      <div>Temperature min: {{forecast.tempMin}}&deg;C </div>
-      <div>Temperature max: {{forecast.tempMax}}&deg;C </div>
-      <div>Wind speed: {{forecast.windSpeed}} </div>
+
+  <div *ngFor="let forecastValue of getForecastValues(forecastMap)">
+    <div class="text-center">
+      <h3 style="color: rgb(68, 122, 112);" *ngIf="cityName">{{forecastValue.city | uppercase }}'S 5 DAYS FORECAST</h3>
+    </div>
+    <div class="container-fluid">
+      <div class="row p-2">
+        <div class="col-md-* col-sm-* col-xs-* card text-center day-div" *ngFor="let forecast of forecastValue.forecastArray">
+          <div>{{forecast.day | date: 'longDate'}}</div>
+          <div>{{forecast.time}}</div>
+          <div><img src="http://openweathermap.org/img/w/{{forecast.icon}}.png" height="80px" width="80px"></div>
+          <div>{{forecast.weatherDesc}}</div>
+          <div><span> {{forecast.tempMin}}</span>&deg;<sup>C
+            </sup>
+          </div>
+
+          <div>Wind speed: {{forecast.windSpeed}} </div>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>
