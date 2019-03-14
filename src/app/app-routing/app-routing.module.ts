@@ -6,7 +6,7 @@ import { ForecastComponent } from '../forecast/forecast.component';
 const routes: Routes = [
     { path: 'current', component: WeatherComponent },
     { path: '', component: WeatherComponent },
-    { path: 'forcast-five', component: ForecastComponent }
+    { path: 'forecast-five', component: ForecastComponent }
 ];
 @NgModule({
     imports: [ RouterModule.forRoot(routes) ],

@@ -25,7 +25,8 @@
 }
 
 .r-div {
+  height: 100%;
   background-image: url('../assets/photos/w1.png');
   background-size: cover;
-  opacity: 1;
+  background-attachment: fixed;
 }

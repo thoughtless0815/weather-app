@@ -9,10 +9,9 @@ import { CityWeatherComponent } from './city-weather/city-weather.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { ForecastComponent } from './forecast/forecast.component';
 import { FiveDaysComponent } from './five-days/five-days.component';
-import { SixteenDaysComponent } from './sixteen-days/sixteen-days.component';
 
 @NgModule({
-    declarations: [ AppComponent, WeatherComponent, CityWeatherComponent, ForecastComponent, FiveDaysComponent, SixteenDaysComponent ],
+    declarations: [ AppComponent, WeatherComponent, CityWeatherComponent, ForecastComponent, FiveDaysComponent ],
     imports: [ BrowserModule, HttpClientModule, FormsModule, BrowserAnimationsModule, AppRoutingModule ],
     providers: [],
     bootstrap: [ AppComponent ]
